@@ -12,13 +12,19 @@
     <title>Bate-Papo UOL</title>
 </head>
 <body>
+    <div id="login">
+        <img src="img/logo.png" alt="Logo UOL">
+        <input type="text" id="user-name" placeholder="Digite seu nome">
+        <button id="btn-login" onclick="getUserName()">Entrar</button>
+    </div>
     <header>
         <img src="img/logo.png" alt="Logo UOL">
         <ion-icon name="people"></ion-icon>
     </header>
     <main>
+        <div id="chat">
 
-
+        </div>
         <!-- 
         <ion-icon name="people"></ion-icon>
         <ion-icon name="person-circle"></ion-icon> 
@@ -28,11 +34,12 @@
         -->    
     </main>
     <footer>
-        <input type="text" id="message" placeholder="Escreva aqui...">
+        <input type="text" id="input-chat" placeholder="Escreva aqui...">
         <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

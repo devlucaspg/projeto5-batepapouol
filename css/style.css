@@ -14,6 +14,56 @@ body {
     color: #000000;
     background-color: #f3f3f3;
 }
+#login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity 1.5s;
+    display: none;
+}
+
+#login img{
+    width: 130px;
+    margin: 72px 0px 112px 0px;
+}
+
+#user-name {
+    width: 260px;
+    height: 54px;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #fff;
+    text-align: center;
+}
+
+#user-name::-webkit-input-placeholder {
+    color: #aeaeae;
+    font-weight: 400;
+}
+
+#btn-login {
+    width: 109px;
+    height: 45px;
+    border: 0;
+    border-radius: 9px;
+    background-color: #e7e7e7;
+    color: #696969;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
 
 header {
     background-color: #ffffff;
@@ -32,6 +82,7 @@ header {
 
 header img {
     height: 53px;
+    cursor: pointer;
 }
 
 header ion-icon {
@@ -41,8 +92,37 @@ header ion-icon {
 
 main {
     margin: 80px auto;
-    padding: 30px;
+    padding: 8px 0px;
     width: 100%;
+}
+
+.container {
+    margin: 3px 0px;
+    padding: 13px 9px;
+}
+
+.message {
+    background-color: #ffffff;
+}
+
+.status {
+    background-color: #DCDCDC;
+}
+
+.private-message {
+    background-color: #FFDEDE;
+}
+
+.time {
+    font-size: 11px;
+    color: #aaaaaa;
+    padding: 0px 8px 0px 0px;
+}
+
+.target {
+    font-size: 14px;
+    font-weight: 900;
+    color: #000000;
 }
 
 footer {
@@ -60,7 +140,7 @@ footer {
     z-index: 1;
 }
 
-input {
+#input-chat {
     width: 95%;
     height: 100%;
     color: #000000;
@@ -69,7 +149,7 @@ input {
     border: 0px solid #ffffff;
 }
 
-#message::-webkit-input-placeholder {
+#input-chat::-webkit-input-placeholder {
     font-style: italic;
     color: #000000;
 }
@@ -77,5 +157,6 @@ input {
 footer ion-icon {
     font-size: 27.5px;
     color: #000000;
+    cursor: pointer;
 }
 
