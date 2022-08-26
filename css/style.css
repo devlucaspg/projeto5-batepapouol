@@ -13,6 +13,7 @@ body {
     font-size: 14px;
     color: #000000;
     background-color: #f3f3f3;
+    overflow:auto;
 }
 
 .login {
@@ -153,7 +154,7 @@ footer {
     z-index: 1;
 }
 
-#input-chat {
+#send-message {
     width: 95%;
     height: 100%;
     color: #000000;
@@ -162,7 +163,7 @@ footer {
     border: 0px solid #ffffff;
 }
 
-#input-chat::-webkit-input-placeholder {
+#send-message::-webkit-input-placeholder {
     font-style: italic;
     color: #000000;
 }

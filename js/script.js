@@ -81,7 +81,9 @@ function getUserName() {
 
 function goChat() {
     const login_page = document.getElementById("login");
+    const chat_page = document.getElementById("chat");
     login_page.classList.add('hidden');
+    chat_page.classList.remove('hidden');
     setInterval(stayConected, 5000);
 }
 
@@ -96,6 +98,50 @@ function notConfirm (error) {
     errorCode = error.response.status;
     if (errorCode == 400) {
         alert("Este nome de usuário já está sendo usado");
-        window.location.reload();
+        document.getElementById("user-name").value = "";
     }
 }
+
+function refressPage() {
+    window.location.reload();
+}
+
+function newMessage() {
+    const fromElement = document.getElementById("user-name");
+    const toElement = "Todos";
+    const textElement = document.getElementById("send-message");
+    const typeElement = "message";
+
+    const message = {
+        from: fromElement.value,
+        to: toElement,
+        text: textElement.value,
+        type: typeElement
+    }
+
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message);
+    promise.then(getMessages).catch(refressPage);
+    document.getElementById("send-message").value = "";
+}
+
+let input1 = document.getElementById("user-name");
+input1.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+    
+        let sendName = document.querySelector("#btn-login");
+      
+      sendName.click();
+    
+    }
+  });
+
+let input2 = document.getElementById("send-message");
+input2.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+    
+        let sendMessage = document.querySelector("#send-m");
+      
+      sendMessage.click();
+    
+    }
+  });
