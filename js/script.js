@@ -96,5 +96,6 @@ function notConfirm (error) {
     errorCode = error.response.status;
     if (errorCode == 400) {
         alert("Este nome de usuário já está sendo usado");
+        window.location.reload();
     }
 }
