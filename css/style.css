@@ -16,6 +16,11 @@ body {
     overflow:auto;
 }
 
+.hidden {
+    display: none;
+    z-index: -1;
+}
+
 /*-------------------------Tela de login---------------------------*/ 
 
 .login {
@@ -39,7 +44,7 @@ body {
 
 /*-------------------------Sidebar---------------------------*/
 
-#chat-menu {
+.chat-menu {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -86,9 +91,10 @@ body {
 
 #user {
     width: 100%;
-    background-color: blue;
     display: flex;
     justify-content: space-between;
+    padding: 5px 0px;
+    cursor: pointer;
 }
 
 #user div {
@@ -96,20 +102,30 @@ body {
     align-items: center;
 }
 
-#user span {
+#user span,
+#visibility span {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+    padding: 0px 7px;
 }
 
 .checkmark {
     color: #ffffff;
-    border: 3px solid #28BB25;
 }
 
-.selectected {
+.selectected ion-icon{
     color: #28BB25;
 }
+
+#public, #private {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px;
+}
+
+
 
 /*
 .all {
@@ -124,6 +140,7 @@ body {
     display: none;
     z-index: -1;
 }
+
 
 #user-name {
     width: 260px;
@@ -179,6 +196,7 @@ header img {
 header ion-icon {
     font-size: 30px;
     color: #000000;
+    cursor: pointer;
 }
 
 main {

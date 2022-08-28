@@ -2,7 +2,7 @@ let user;
 let userName;
 let errorCode;
 let usersList;
-let userSelect;
+let userSelected;
 let nickname;
 let messages = [];
 let allUsers = "Todos";
@@ -147,7 +147,19 @@ input2.addEventListener("keypress", function(e) {
     
     }
   });
-
+/*
+  let esc = document.getElementById("gray");
+esc.addEventListener("keypress", function(e) {
+    if(e.key === 'Escape') {
+    
+        let hideSidebar = document.querySelector("#gray");
+      
+        hideSidebar.click();
+    
+    }
+  });
+*/
+ 
 function getUsersList() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
     promise.then(receivedUsersList) 
@@ -164,7 +176,7 @@ function renderUsersList() {
 
     for (let i = 0; i < usersList.length; i++) {
         users.innerHTML = users.innerHTML + `
-        <div id="user" onclick="userSelect(this)>
+        <div id="user" class="user" onclick="userSelect(this)">
             <div>
                 <ion-icon name="person-circle"></ion-icon>
                 <span>${usersList[i].name}</span>
@@ -178,18 +190,23 @@ function renderUsersList() {
 getUsersList();
 setInterval(getUsersList, 10000);
 
-function userSelected(userS) {
+function userSelect(userS) {
 
-    const userSelected = document.getElementById("user");
+    const uSelect = document.querySelector(".user .selected");
 
-    if ( userSelect == "Todos" ){
-        userSelect.classList.remove('selected');
+    if ( uSelect !== Null ){
+        uSelect.classList.remove('selected');
     }
-
+    userSelected = userS;
     userS.classList.add('selected');
 }
 
 function viewSidebar() {
     const sidebar = document.getElementById("chat-menu");
     sidebar.classList.remove('hidden');
+}
+
+function hideSidebar() {
+    const sidebar = document.getElementById("chat-menu");
+    sidebar.classList.add('hidden');
 }

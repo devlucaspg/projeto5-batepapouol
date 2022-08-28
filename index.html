@@ -17,11 +17,11 @@
         <input type="text" id="user-name" placeholder="Digite seu nome">
         <button id="btn-login" onclick="getUserName()">Entrar</button>
     </div>
-    <div id="chat-menu" class="hidden">
-        <div class="gray"></div>
+    <div id="chat-menu" class="chat-menu hidden">
+        <div class="gray" onclick="hideSidebar()"></div>
         <div class="sidebar">
             <h1>Escolha um contato<br>para enviar mensagem:</h1>
-            <div id="user" class="all selected">
+            <div id="user" class="all user selected">
                 <div>
                     <ion-icon name="people"></ion-icon>
                     <span>Todos</span>
@@ -32,14 +32,14 @@
             </div>
             <h1>Escolha a visibilidade:</h1>
             <div id="visibility">
-                <div id="public">
+                <div id="public" onclick="privaciSelect(this)">
                     <div>
                         <ion-icon name="lock-open"></ion-icon>
                         <span>Público</span>
                     </div>
                     <ion-icon name="checkmark" class="checkmark"></ion-icon> 
                 </div>
-                <div id="private">
+                <div id="private" onclick="privaciSelect(this)">
                     <div>
                         <ion-icon name="lock-closed"></ion-icon>
                         <span>Reservadamente</span>
