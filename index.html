@@ -17,21 +17,46 @@
         <input type="text" id="user-name" placeholder="Digite seu nome">
         <button id="btn-login" onclick="getUserName()">Entrar</button>
     </div>
+    <div id="chat-menu" class="hidden">
+        <div class="gray"></div>
+        <div class="sidebar">
+            <h1>Escolha um contato<br>para enviar mensagem:</h1>
+            <div id="user" class="all selected">
+                <div>
+                    <ion-icon name="people"></ion-icon>
+                    <span>Todos</span>
+                </div>
+                <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+            </div>
+            <div id="users">
+            </div>
+            <h1>Escolha a visibilidade:</h1>
+            <div id="visibility">
+                <div id="public">
+                    <div>
+                        <ion-icon name="lock-open"></ion-icon>
+                        <span>Público</span>
+                    </div>
+                    <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+                </div>
+                <div id="private">
+                    <div>
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <span>Reservadamente</span>
+                    </div>
+                        <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+                </div>
+             </div>   
+        </div>
+    </div>
     <header>
         <img src="img/logo.png" alt="Logo UOL">
-        <ion-icon name="people"></ion-icon>
+        <ion-icon name="people" onclick="viewSidebar()"></ion-icon>
     </header>
     <main>
         <div id="chat" class="hidden">
 
         </div>
-        <!-- 
-        <ion-icon name="people"></ion-icon>
-        <ion-icon name="person-circle"></ion-icon> 
-        <ion-icon name="checkmark"></ion-icon>   
-        <ion-icon name="lock-closed"></ion-icon>
-        <ion-icon name="lock-open"></ion-icon>
-        -->    
     </main>
     <footer>
         <input type="text" id="send-message" placeholder="Escreva aqui...">

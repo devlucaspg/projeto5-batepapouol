@@ -1,6 +1,8 @@
 let user;
 let userName;
 let errorCode;
+let usersList;
+let userSelect;
 let nickname;
 let messages = [];
 let allUsers = "Todos";
@@ -9,6 +11,7 @@ function getMessages() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     promise.then(receivedMessages) 
 }
+
 
 function stayConected() {
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", user);
@@ -67,8 +70,7 @@ function renderMessages() {
 }   
 
 function viewLastMessage() {
-    const chat = document.getElementById('chat');
-    chat.scrollIntoView(false);
+    window.scrollTo(0, document.body.scrollHeight);
 }
 
 function getUserName() {
@@ -145,3 +147,49 @@ input2.addEventListener("keypress", function(e) {
     
     }
   });
+
+function getUsersList() {
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    promise.then(receivedUsersList) 
+}
+
+function receivedUsersList(response) {
+    usersList = response.data;
+    renderUsersList();
+}
+
+function renderUsersList() {
+    const users = document.getElementById("users");
+    users.innerHTML = "";
+
+    for (let i = 0; i < usersList.length; i++) {
+        users.innerHTML = users.innerHTML + `
+        <div id="user" onclick="userSelect(this)>
+            <div>
+                <ion-icon name="person-circle"></ion-icon>
+                <span>${usersList[i].name}</span>
+            </div>
+            <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+        </div>
+        `
+    }
+}
+
+getUsersList();
+setInterval(getUsersList, 10000);
+
+function userSelected(userS) {
+
+    const userSelected = document.getElementById("user");
+
+    if ( userSelect == "Todos" ){
+        userSelect.classList.remove('selected');
+    }
+
+    userS.classList.add('selected');
+}
+
+function viewSidebar() {
+    const sidebar = document.getElementById("chat-menu");
+    sidebar.classList.remove('hidden');
+}
