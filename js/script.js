@@ -2,10 +2,20 @@ let user;
 let userName;
 let errorCode;
 let usersList;
-let userSelected;
+let userCheck
+let privacyCheck;
+let typeOfMessage;
 let nickname;
 let messages = [];
 let allUsers = "Todos";
+let textId;
+textId = document.querySelector("text-id");
+let privacyID;
+
+userCheck = allUsers;
+privacyCheck = "Público";
+
+
 
 function getMessages() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
@@ -74,11 +84,21 @@ function viewLastMessage() {
 }
 
 function getUserName() {
+
+    const login = document.getElementById("login");
+    login.children[1].classList.add('hidden');
+    login.children[2].classList.add('hidden');
+    login.children[3].classList.remove('hidden');
+
+
+
     userName = document.getElementById("user-name").value;
     user = {name: userName};
     
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user);
     promise.then(confirmUserName).catch(notConfirm)
+
+    console.log("Fazendo login");
 }
 
 function goChat() {
@@ -100,6 +120,12 @@ function notConfirm (error) {
     errorCode = error.response.status;
     if (errorCode == 400) {
         alert("Este nome de usuário já está sendo usado");
+
+        const login = document.getElementById("login");
+        login.children[1].classList.remove('hidden');
+        login.children[2].classList.remove('hidden');
+        login.children[3].classList.add('hidden');
+
         document.getElementById("user-name").value = "";
     }
 }
@@ -109,10 +135,13 @@ function refressPage() {
 }
 
 function newMessage() {
+
+    verifyType ();
+
     const fromElement = document.getElementById("user-name");
-    const toElement = "Todos";
+    const toElement = userCheck;
     const textElement = document.getElementById("send-message");
-    const typeElement = "message";
+    const typeElement = typeOfMessage;
 
     const message = {
         from: fromElement.value,
@@ -120,7 +149,7 @@ function newMessage() {
         text: textElement.value,
         type: typeElement
     }
-
+console.log(message);
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message);
     promise.then(getMessages).catch(refressPage);
     document.getElementById("send-message").value = "";
@@ -179,7 +208,7 @@ function renderUsersList() {
         <div id="user" class="user" onclick="userSelect(this)">
             <div>
                 <ion-icon name="person-circle"></ion-icon>
-                <span>${usersList[i].name}</span>
+                <span data-identifier="participant">${usersList[i].name}</span>
             </div>
             <ion-icon name="checkmark" class="checkmark"></ion-icon> 
         </div>
@@ -194,11 +223,15 @@ function userSelect(userS) {
 
     const uSelect = document.querySelector(".user .selected");
 
-    if ( uSelect !== Null ){
+    if ( uSelect !== null ){
         uSelect.classList.remove('selected');
     }
-    userSelected = userS;
-    userS.classList.add('selected');
+
+    userCheck = userS.children[0].children[1].innerHTML;
+    userS.children[1].classList.add('selected');
+
+    footerId();
+
 }
 
 function viewSidebar() {
@@ -210,3 +243,39 @@ function hideSidebar() {
     const sidebar = document.getElementById("chat-menu");
     sidebar.classList.add('hidden');
 }
+
+function privacySelect(privacyS) {
+
+    const pSelect = document.querySelector(".privacy .selected");
+
+    if ( pSelect !== null ){
+        pSelect.classList.remove('selected');
+    }
+
+    privacyCheck = privacyS.children[0].children[1].innerHTML;
+    privacyS.children[1].classList.add('selected');
+
+    footerId();
+
+}
+
+function verifyType () {
+    if (privacyCheck == "Reservadamente") {
+        typeOfMessage = "private_message";
+    } else {
+        typeOfMessage = "message";
+    }
+
+}
+
+function footerId() {
+
+    const msgId = "Enviando para " + userCheck + " (" + privacyCheck + ")";
+
+    let textI = document.getElementById("text-id");
+    textI.innerHTML = "";
+    textI.innerHTML = msgId;
+        
+}
+
+footerId();

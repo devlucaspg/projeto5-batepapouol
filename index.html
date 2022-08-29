@@ -16,33 +16,37 @@
         <img src="img/logo.png" alt="Logo UOL">
         <input type="text" id="user-name" placeholder="Digite seu nome">
         <button id="btn-login" onclick="getUserName()">Entrar</button>
+        <div class="hidden loader">
+            <div class="loader-text">Entrando...</div>
+            <div class="lds-dual-ring"></div>
+        </div>    
     </div>
     <div id="chat-menu" class="chat-menu hidden">
         <div class="gray" onclick="hideSidebar()"></div>
         <div class="sidebar">
             <h1>Escolha um contato<br>para enviar mensagem:</h1>
-            <div id="user" class="all user selected">
+            <div id="user" class="user" onclick="userSelect(this)">
                 <div>
                     <ion-icon name="people"></ion-icon>
                     <span>Todos</span>
                 </div>
-                <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+                <ion-icon name="checkmark" class="checkmark selected"></ion-icon> 
             </div>
             <div id="users">
             </div>
             <h1>Escolha a visibilidade:</h1>
-            <div id="visibility">
-                <div id="public" onclick="privaciSelect(this)">
+            <div id="privacy">
+                <div id="public" class="privacy" onclick="privacySelect(this)">
                     <div>
                         <ion-icon name="lock-open"></ion-icon>
-                        <span>Público</span>
+                        <span data-identifier="visibility">Público</span>
                     </div>
-                    <ion-icon name="checkmark" class="checkmark"></ion-icon> 
+                    <ion-icon name="checkmark" class="checkmark selected"></ion-icon> 
                 </div>
-                <div id="private" onclick="privaciSelect(this)">
+                <div id="private" class="privacy" onclick="privacySelect(this)">
                     <div>
                         <ion-icon name="lock-closed"></ion-icon>
-                        <span>Reservadamente</span>
+                        <span data-identifier="visibility">Reservadamente</span>
                     </div>
                         <ion-icon name="checkmark" class="checkmark"></ion-icon> 
                 </div>
@@ -59,7 +63,10 @@
         </div>
     </main>
     <footer>
-        <input type="text" id="send-message" placeholder="Escreva aqui...">
+        <div class="footer-text">
+            <input type="text" id="send-message" placeholder="Escreva aqui...">
+            <span id="text-id" class="text-id">teste</span>
+         </div>
         <ion-icon name="paper-plane-outline" id="send-m" onclick="newMessage()"></ion-icon>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
