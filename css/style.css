@@ -200,6 +200,10 @@ span {
     line-height: 20px;
 }
 
+.message-me {
+    background-color: #ffb759;
+}
+
 .message {
     background-color: #ffffff;
 }

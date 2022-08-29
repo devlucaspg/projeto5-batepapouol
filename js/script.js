@@ -42,18 +42,31 @@ function renderMessages() {
 
     for (let i = 0; i < messages.length; i++) {
         
-        if (messages[i].type == "message") {
-        chat.innerHTML = chat.innerHTML + `
-            <div class="container message">
-                <span class="time">(${messages[i].time})</span>
-                <span class="target break-text">${messages[i].from}</span>
-                <span>para</span>
-                <span class="target break-text">${messages[i].to}: </span>
-                <span class="content break-text">${messages[i].text}</span>
-            </div>
-                `
-        }
-        if (messages[i].type == "status") {
+        if (messages[i].type === "message") {
+            if(messages[i].to === userName) {
+                chat.innerHTML = chat.innerHTML + `
+                    <div class="container message-me">
+                        <span class="time">(${messages[i].time})</span>
+                        <span class="target break-text">${messages[i].from}</span>
+                        <span>para</span>
+                        <span class="target break-text">${messages[i].to}: </span>
+                        <span class="content break-text">${messages[i].text}</span>
+                    </div>
+                        `
+            }
+            else {
+            chat.innerHTML = chat.innerHTML + `
+                <div class="container message">
+                    <span class="time">(${messages[i].time})</span>
+                    <span class="target break-text">${messages[i].from}</span>
+                    <span>para</span>
+                    <span class="target break-text">${messages[i].to}: </span>
+                    <span class="content break-text">${messages[i].text}</span>
+                </div>
+                    `
+            }
+        }    
+        if (messages[i].type === "status") {
             chat.innerHTML = chat.innerHTML + `
             <div class="container status">
                 <span class="time">(${messages[i].time})</span>
@@ -62,8 +75,8 @@ function renderMessages() {
             </div>
                 `
         }
-        if (messages[i].type == "private_message") {
-            if (messages[i].to == userName || messages[i].from == userName || messages[i].to == allUsers) {
+        if (messages[i].type === "private_message") {
+            if (messages[i].to === userName || messages[i].from === userName || messages[i].to === allUsers) {
                 chat.innerHTML = chat.innerHTML + `
                 <div class="container private-message">
                 <span class="time">(${messages[i].time})</span>
@@ -176,18 +189,16 @@ input2.addEventListener("keypress", function(e) {
     
     }
   });
-/*
-  let esc = document.getElementById("gray");
-esc.addEventListener("keypress", function(e) {
+
+ document.onkeydown = function(e) {
     if(e.key === 'Escape') {
-    
+        console.log("Escondendo barra lateral");
         let hideSidebar = document.querySelector("#gray");
       
         hideSidebar.click();
-    
+        
     }
-  });
-*/
+  };
  
 function getUsersList() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
